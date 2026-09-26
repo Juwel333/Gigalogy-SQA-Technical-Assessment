@@ -1,1 +1,451 @@
-
+{
+  "info": {
+    "_postman_id": "28a05ccf-41a4-4e92-bfd6-56e0a771dc42",
+    "name": "Technical Assessment",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17803722",
+    "_collection_link": "https://go.postman.co/collection/17803722-28a05ccf-41a4-4e92-bfd6-56e0a771dc42?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "TC_01_Keyword Search",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "//Assersion1: Verify the HTTP statu code is 200\npm.test(\"Status code is 200\", function () \n{\n    pm.response.to.have.status(200);\n});\n\n// Parse response\nconst response = pm.response.json();\n\n//Assersion2: Verify the response structue\npm.test(\"Response structure is valid\", function () {\n    pm.expect(response).to.have.property(\"success\");\n    pm.expect(response).to.have.property(\"result\");\n    pm.expect(response.result).to.be.an(\"array\");\n});\n// 3.Assertion3: Verify the search results\npm.test(\"Search should return results\", function () {\n    pm.expect(response.result.length).to.be.above(0);\n});\n"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"rakuten_query_parameters\": {\r\n    \"keyword\": \"Shoulder bag\",\r\n    \"shopCode\": \"ZOZOUED\",\r\n    \"page\": 1,\r\n    \"hits\": 10\r\n  },\r\n  \"yahoo_query_parameters\": {\r\n    \"query\": \"Shoulder bag\",\r\n    \"brand_id\": \"To b. by agnes b.\",\r\n    \"results\": 10,\r\n    \"start\": 0\r\n  },\r\n  \"from_scheduler\": false\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/v1/items/search",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "v1",
+            "items",
+            "search"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "TC_02_Price Range Filter",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "//Assersion1: Verify the HTTP statu code is 200\r\npm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n// Parse response\r\nconst response = pm.response.json();\r\n\r\n//Assersion2:Verify the result field exists.\r\npm.test(\"Result field exists\", function () {\r\n    pm.expect(response).to.have.property(\"result\");\r\n});\r\n//Assersion3:Verify the response structue\r\npm.test(\"Response structure is valid\", function () {\r\n    pm.expect(response).to.have.property(\"success\");\r\n    pm.expect(response).to.have.property(\"result\");\r\n    pm.expect(response.result).to.be.an(\"array\");\r\n});\r\n//Assersion4:Verify the price filter returns products\r\npm.test(\"Price filter should return products\", function () {\r\n    pm.expect(response.result.length).to.be.above(0);\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"rakuten_query_parameters\": {\r\n    \"keyword\": \"Shoulder bag\",\r\n    \"sort\": \"standard\",\r\n    \"shopCode\": \"ZOZOUED\",\r\n    \"page\": 1,\r\n    \"hits\": 10\r\n  },\r\n  \"yahoo_query_parameters\": {\r\n    \"query\": \"Shoulder bag\",\r\n    \"brand_id\": \"To b. by agnes b.\",\r\n    \"price_from\": 0,\r\n    \"price_to\": 5000,\r\n    \"results\": 10,\r\n    \"start\": 0,\r\n    \"sort\":\"price\"\r\n  },\r\n  \"from_scheduler\": false\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/v1/items/search",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "v1",
+            "items",
+            "search"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "TC_03_Price Sorting -ASC",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "//Assersion1: Verify the HTTP statu code is 200\r\npm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n// Parse response\r\nconst response = pm.response.json();\r\n\r\n//Assersion2:Verify the result field exists.\r\npm.test(\"Result field exists\", function () {\r\n    pm.expect(response).to.have.property(\"result\");\r\n});\r\n//Assersion3:Verify the response structue\r\npm.test(\"Response structure is valid\", function () {\r\n    pm.expect(response).to.have.property(\"success\");\r\n    pm.expect(response).to.have.property(\"result\");\r\n    pm.expect(response.result).to.be.an(\"array\");\r\n});\r\n// Assertion 4:Verify products are available and sorted by price in ascending order\r\npm.test(\"Products should be sorted by price in ascending order\", function () {\r\n    pm.expect(response.result.length).to.be.above(0);\r\n    for (let i = 0; i < response.result.length - 1; i++) {\r\n        pm.expect(response.result[i].price)\r\n          .to.be.at.most(response.result[i + 1].price);\r\n    }\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"rakuten_query_parameters\": {\r\n    \"keyword\": \"Shoulder bag\",\r\n    \"sort\": \"itemPrice\",\r\n    \"shopCode\": \"ZOZOUED\",\r\n    \"page\": 1,\r\n    \"hits\": 10\r\n  },\r\n  \"yahoo_query_parameters\": {\r\n    \"query\": \"Shoulder bag\",\r\n    \"brand_id\": \"To b. by agnes b.\",\r\n    \"price_from\": 3000,\r\n    \"price_to\": 5000,\r\n    \"results\": 10,\r\n    \"start\": 0,\r\n    \"sort\": \"price\"\r\n  },\r\n  \"from_scheduler\": false\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/v1/items/search",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "v1",
+            "items",
+            "search"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "TC_04_Price Sorting - DESC",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "//Assersion1: Verify the HTTP statu code is 200\r\npm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n// Parse response\r\nconst response = pm.response.json();\r\n\r\n//Assersion2:Verify the result field exists.\r\npm.test(\"Result field exists\", function () {\r\n    pm.expect(response).to.have.property(\"result\");\r\n});\r\n//Assersion3:Verify the response structue\r\npm.test(\"Response structure is valid\", function () {\r\n    pm.expect(response).to.have.property(\"success\");\r\n    pm.expect(response).to.have.property(\"result\");\r\n    pm.expect(response.result).to.be.an(\"array\");\r\n});\r\n// Assertion 4:Verify products are available and sorted by price in decending order\r\npm.test(\"Products should be sorted by price in descending order\", function () {\r\n    pm.expect(response.result.length).to.be.above(0);\r\n    for (let i = 0; i < response.result.length - 1; i++) {\r\n        pm.expect(response.result[i].price)\r\n          .to.be.at.least(response.result[i + 1].price);\r\n    }\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"rakuten_query_parameters\": {\r\n    \"keyword\": \"Shoulder bag\",\r\n    \"sort\": \"-itemPrice\",\r\n    \"shopCode\": \"ZOZOUED\",\r\n    \"page\": 1,\r\n    \"hits\": 10\r\n  },\r\n  \"yahoo_query_parameters\": {\r\n    \"query\": \"Shoulder bag\",\r\n    \"brand_id\": \"To b. by agnes b.\",\r\n    \"price_from\": 3000,\r\n    \"price_to\": 5000,\r\n    \"results\": 10,\r\n    \"start\": 0,\r\n    \"sort\": \"-price\"\r\n  },\r\n  \"from_scheduler\": false\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/v1/items/search",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "v1",
+            "items",
+            "search"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "TC_05_Review Avg Sorting - ASC",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "//Assersion1: Verify the HTTP statu code is 200\r\npm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n// Parse response\r\nconst response = pm.response.json();\r\n\r\n//Assersion2:Verify the result field exists.\r\npm.test(\"Result field exists\", function () {\r\n    pm.expect(response).to.have.property(\"result\");\r\n});\r\n//Assersion3:Verify the response structue\r\npm.test(\"Response structure is valid\", function () {\r\n    pm.expect(response).to.have.property(\"success\");\r\n    pm.expect(response).to.have.property(\"result\");\r\n    pm.expect(response.result).to.be.an(\"array\");\r\n});\r\n // Assertion 4:Verify products are sorted by average rating in ascending order\r\npm.test(\"Verify products are sorted by average rating in ascending order\", function () {\r\n    pm.expect(response.result.length).to.be.above(0);\r\n    for (let i = 0; i < response.result.length - 1; i++) {\r\n        pm.expect(response.result[i].reviewAverage)\r\n          .to.be.at.most(response.result[i + 1].reviewAverage);\r\n    }\r\n\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"rakuten_query_parameters\": {\r\n    \"keyword\": \"Shoulder bag\",\r\n    \"sort\": \"reviewAverage\",\r\n    \"shopCode\": \"ZOZOUED\",\r\n    \"page\": 1,\r\n    \"hits\": 10\r\n  },\r\n  \"yahoo_query_parameters\": {\r\n    \"query\": \"Shoulder bag\",\r\n    \"brand_id\": \"To b. by agnes b.\",\r\n    \"price_from\": 3000,\r\n    \"price_to\": 5000,\r\n    \"results\": 10,\r\n    \"start\": 0,\r\n    \"sort\": \"review_average\"\r\n  },\r\n  \"from_scheduler\": false\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/v1/items/search",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "v1",
+            "items",
+            "search"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "TC_06_Review Avg Sorting - DESC",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "//Assersion1: Verify the HTTP statu code is 200\r\npm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n// Parse response\r\nconst response = pm.response.json();\r\n\r\n//Assersion2:Verify the result field exists.\r\npm.test(\"Result field exists\", function () {\r\n    pm.expect(response).to.have.property(\"result\");\r\n});\r\n//Assersion3:Verify the response structue\r\npm.test(\"Response structure is valid\", function () {\r\n    pm.expect(response).to.have.property(\"success\");\r\n    pm.expect(response).to.have.property(\"result\");\r\n    pm.expect(response.result).to.be.an(\"array\");\r\n});\r\n // Assertion 4:Verify products are sorted by average rating in descending order\r\npm.test(\"Verify products are sorted by average rating in descending order\", function () {\r\n    pm.expect(response.result.length).to.be.above(0);\r\n    for (let i = 0; i < response.result.length - 1; i++) {\r\n        pm.expect(response.result[i].reviewAverage)\r\n          .to.be.at.least(response.result[i + 1].reviewAverage);\r\n    }\r\n\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"rakuten_query_parameters\": {\r\n    \"keyword\": \"Shoulder bag\",\r\n    \"sort\": \"-reviewAverage\",\r\n    \"shopCode\": \"ZOZOUED\",\r\n    \"page\": 1,\r\n    \"hits\": 10\r\n  },\r\n  \"yahoo_query_parameters\": {\r\n    \"query\": \"Shoulder bag\",\r\n    \"brand_id\": \"To b. by agnes b.\",\r\n    \"price_from\": 3000,\r\n    \"price_to\": 5000,\r\n    \"results\": 10,\r\n    \"start\": 0,\r\n    \"sort\": \"-review_average\"\r\n  },\r\n  \"from_scheduler\": false\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/v1/items/search",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "v1",
+            "items",
+            "search"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "TC_07_Review Count - ASC",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "//Assersion1: Verify the HTTP statu code is 200\r\npm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n// Parse response\r\nconst response = pm.response.json();\r\n\r\n//Assersion2:Verify the result field exists.\r\npm.test(\"Result field exists\", function () {\r\n    pm.expect(response).to.have.property(\"result\");\r\n});\r\n//Assersion3:Verify the response structue\r\npm.test(\"Response structure is valid\", function () {\r\n    pm.expect(response).to.have.property(\"success\");\r\n    pm.expect(response).to.have.property(\"result\");\r\n    pm.expect(response.result).to.be.an(\"array\");\r\n});\r\n // Assertion 4:Verify products are sorted by review count in ascending order\r\npm.test(\"Verify products are sorted by review count in ascending order\", function () {\r\n    pm.expect(response.result.length).to.be.above(0);\r\n    for (let i = 0; i < response.result.length - 1; i++) {\r\n        pm.expect(response.result[i].reviewCount)\r\n          .to.be.at.most(response.result[i + 1].reviewCount);\r\n    }\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"rakuten_query_parameters\": {\r\n    \"keyword\": \"Shoulder bag\",\r\n    \"sort\": \"reviewCount\",\r\n    \"shopCode\": \"ZOZOUED\",\r\n    \"page\": 1,\r\n    \"hits\": 10\r\n  },\r\n  \"yahoo_query_parameters\": {\r\n    \"query\": \"Shoulder bag\",\r\n    \"brand_id\": \"To b. by agnes b.\",\r\n    \"price_from\": 3000,\r\n    \"price_to\": 5000,\r\n    \"results\": 10,\r\n    \"start\": 0,\r\n    \"sort\": \"review_count\"\r\n  },\r\n  \"from_scheduler\": false\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/v1/items/search",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "v1",
+            "items",
+            "search"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "TC_08_Review Count - DESC",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "//Assersion1: Verify the HTTP statu code is 200\r\npm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n// Parse response\r\nconst response = pm.response.json();\r\n\r\n//Assersion2:Verify the result field exists.\r\npm.test(\"Result field exists\", function () {\r\n    pm.expect(response).to.have.property(\"result\");\r\n});\r\n//Assersion3:Verify the response structue\r\npm.test(\"Response structure is valid\", function () {\r\n    pm.expect(response).to.have.property(\"success\");\r\n    pm.expect(response).to.have.property(\"result\");\r\n    pm.expect(response.result).to.be.an(\"array\");\r\n});\r\n // Assertion 4:Verify products are sorted by review count in descending order\r\npm.test(\"Verify products are sorted by review count in descending order\", function () {\r\n    pm.expect(response.result.length).to.be.above(0);\r\n    for (let i = 0; i < response.result.length - 1; i++) {\r\n        pm.expect(response.result[i].reviewCount)\r\n          .to.be.at.least(response.result[i + 1].reviewCount);\r\n    }\r\n\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"rakuten_query_parameters\": {\r\n    \"keyword\": \"Shoulder bag\",\r\n    \"sort\": \"-reviewCount\",\r\n    \"shopCode\": \"ZOZOUED\",\r\n    \"page\": 1,\r\n    \"hits\": 10\r\n  },\r\n  \"yahoo_query_parameters\": {\r\n    \"query\": \"Shoulder bag\",\r\n    \"brand_id\": \"To b. by agnes b.\",\r\n    \"price_from\": 3000,\r\n    \"price_to\": 5000,\r\n    \"results\": 10,\r\n    \"start\": 0,\r\n    \"sort\": \"-review_count\"\r\n  },\r\n  \"from_scheduler\": false\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/v1/items/search",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "v1",
+            "items",
+            "search"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "TC_09_Invalid Keyword Search",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "//Assersion1: Verify the HTTP statu code is 200\r\npm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n// Parse response\r\nconst response = pm.response.json();\r\n\r\n//Assersion2:Verify the result field exists.\r\npm.test(\"Result field exists\", function () {\r\n    pm.expect(response).to.have.property(\"result\");\r\n});\r\n//Assersion3:Verify the response structue\r\npm.test(\"Response structure is valid\", function () {\r\n    pm.expect(response).to.have.property(\"success\");\r\n    pm.expect(response).to.have.property(\"result\");\r\n    pm.expect(response.result).to.be.an(\"array\");\r\n});\r\n// Assertion 4:Verify no products are returned for an invalid keyword\r\npm.test(\"Verify no products are returned for an invalid keyword\", function () {\r\n    pm.expect(response.result.length).to.equal(0);\r\n});\r\n "
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"rakuten_query_parameters\": {\r\n    \"keyword\": \"sv%^%$8usyd\",\r\n    \"shopCode\": \"ZOZOUED\",\r\n    \"page\": 1,\r\n    \"hits\": 10\r\n  },\r\n  \"yahoo_query_parameters\": {\r\n    \"query\": \"sv%^%$8usyd\",\r\n    \"brand_id\": \"To b. by agnes b.\",\r\n    \"results\": 10,\r\n    \"start\": 0\r\n  },\r\n  \"from_scheduler\": false\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/v1/items/search",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "v1",
+            "items",
+            "search"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "TC_10_Invalid Query Parameter",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "//Assersion1:Verify the HTTP statu code is 200\r\npm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n// Parse response\r\nconst response = pm.response.json();\r\n\r\n//Assersion2:Verify the result field exists.\r\npm.test(\"Result field exists\", function () {\r\n    pm.expect(response).to.have.property(\"result\");\r\n});\r\n//Assersion3:Verify the response structue\r\npm.test(\"Response structure is valid\", function () {\r\n    pm.expect(response).to.have.property(\"success\");\r\n    pm.expect(response).to.have.property(\"result\");\r\n    pm.expect(response.result).to.be.an(\"array\");\r\n});\r\n// Assertion 4:Verify no products are returned for an invalid query parameter\r\npm.test(\"Verify no products are returned for an invalid query parameter\", function () {\r\n    pm.expect(response.result.length).to.equal(0);\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"rakuten_query_parameters\": {\r\n    \"keyword\": 12345,\r\n    \"sort\": \"INVALID_SORT\",\r\n    \"page\": \"one\",\r\n    \"hits\": -1,\r\n    \"condition\": 5\r\n  },\r\n  \"yahoo_query_parameters\": {\r\n    \"query\": 12345,\r\n    \"price_from\": \"3000\",\r\n    \"price_to\": \"5000\",\r\n    \"results\": \"ten\",\r\n    \"in_stock\": \"yes\",\r\n    \"sort\": \"INVALID_SORT\",\r\n    \"condition\": 5\r\n  },\r\n  \"from_scheduler\": false\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/v1/items/search",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "v1",
+            "items",
+            "search"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
