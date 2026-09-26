@@ -1,7 +1,7 @@
 # Gigalogy-SQA-Technical-Assessment
-SQA technical assessment covering API testing, UI automation, test cases, and bug reporting.
+SQA technical assessment covering API testing, UI automation,Performance test, test cases, and bug reporting.
 
-# Demo Shop – QA Testing Assignment
+# Demo Shop API & Web Application – Test Strategy.
 ## 1. Project Overview
 
 This repository contains the QA testing artifacts for the Demo Shop application, including API testing, Web UI functional testing, automation, bug reporting, and basic performance testing.
