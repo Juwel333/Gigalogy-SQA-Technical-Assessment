@@ -116,7 +116,7 @@ This is a smoke-level performance check and should not be considered a full load
 
 Manual test cases cover both API and Web UI functionality.
 
-### API
+###API
 
 The API test cases cover:
 
@@ -227,7 +227,7 @@ Postman Installation Process
 
 Create a Collection
 Create a separate collection to organize all API requests.
-# Steps
+Steps
 * Open Postman.
 * Click Collections from the left sidebar.
 * Click + or Create Collection.
