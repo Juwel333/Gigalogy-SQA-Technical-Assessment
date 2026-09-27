@@ -140,7 +140,7 @@ The detailed test cases are available in the `Test Cases` and `API Testing` fold
 
 ---
 
-## 5. API Automation
+## 5. API Testing
 
 API testing was performed using Postman.
 
