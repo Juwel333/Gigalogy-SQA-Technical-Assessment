@@ -243,7 +243,8 @@ An environment is used to store reusable API configuration such as the Base URL.
 * Name it: (Any of your choice)
 * Add the following variable:
 
-| Variable	| Initia Value	                        |
+| Variable	| Initia Value	
+------------|---------------------------------------|
 | base_url	| https://demo-shop-api.gigalogy.com.bd |
 
 * Save the environment.
