@@ -253,9 +253,10 @@ An environment is used to store reusable API configuration such as the Base URL.
 
 ## Headers
 * For requests that send JSON data, use the following header:
+
 | Key		        | Value 
-----------------|---------------------------------------|
-| Content-Type	| application/json                      |
+----------------|-------------------|
+| Content-Type	| application/json  |
 
 
 # In Postman:
