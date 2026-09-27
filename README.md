@@ -295,14 +295,8 @@ Each bug report includes:
 * Severity
 * Priority
 
-The detailed bug reports are available in:
-
-```text
-Bug Reports/
-```
-
+The detailed bug reports are available in: Bug Reports
 ---
-
 ## 09. Performance Testing
 
 A basic API performance test was conducted using 50 requests.
@@ -318,11 +312,7 @@ A basic API performance test was conducted using 50 requests.
 | Throughput            | 0.84 requests/second   |
 | Error Rate            | 0                      |
 
-Detailed results are available in:
-
-```text
-Performance Testing/
-```
+Detailed results are available in: Performance Testing/
 
 ---
 
@@ -366,10 +356,10 @@ Performance Testing/
 | 6 | UI Manual Testing  | `Manual/`              |
 | 7 | Bug Reports        | `Bug Reports/`         |
 | 7 | Performance Report | `Performance Testing/` |
+
 ---
 
 ## 13. Conclusion
 
 The testing activity covers the major functional areas requested in the assignment, including API validation, Web UI testing, automation, defect reporting, and basic performance testing.
-
 The repository is organized to keep test cases, automation code, bug reports, and performance results separated and easy to review.
