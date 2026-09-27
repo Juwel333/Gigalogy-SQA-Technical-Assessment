@@ -4,7 +4,7 @@ SQA technical assessment covering API testing, UI automation,Performance test, t
 # Project Name: Demo Shop Web Application API, UI Functional and Performance – Test Strategy.
 ## 1. Project Overview
 
-This repository contains the QA testing artifacts for the Demo Shop application, including API testing, Web UI functional testing, automation, bug reporting, and basic performance testing.
+This repository contains QA testing artifacts for the Demo Shop application, covering API testing, Web UI functional testing, UI automation, bug reporting, and basic performance testing.
 
 The testing focuses on functional coverage, negative/edge-case testing, automation maintainability,performance testing and clear defect reporting.
 
