@@ -212,20 +212,20 @@ The automation:
 
 ## 7. Installation & Setup
 
-### Prerequisites Of API Testing
+Prerequisites Of API Testing
 
 Before starting API testing, install the following:
 
 * Postman
 * Internet connection
 
-## Postman Installation Process
+Postman Installation Process
 * Download and install Postman from the official Postman website.
 * Open Postman after installation.
 * Sign in or continue with the available local option.
 * Verify that Postman is working properly.
 
-## Create a Collection
+Create a Collection
 Create a separate collection to organize all API requests.
 # Steps
 * Open Postman.
@@ -235,9 +235,9 @@ Create a separate collection to organize all API requests.
 * Save the collection.
 All API requests and related test cases should be maintained inside this collection.
 
-## Create an Environment
+Create an Environment
 An environment is used to store reusable API configuration such as the Base URL.
-# Steps
+Steps
 * In Postman, open Environments.
 * Click Create Environment.
 * Name it: (Any of your choice)
@@ -251,7 +251,7 @@ An environment is used to store reusable API configuration such as the Base URL.
 * Select Demo Shop API Environment from the environment selector.
 * The Base URL can then be used in requests as: {{base_url}}
 
-## Headers
+Headers
 * For requests that send JSON data, use the following header:
 
 | Key		        | Value 
@@ -259,25 +259,24 @@ An environment is used to store reusable API configuration such as the Base URL.
 | Content-Type	| application/json  |
 
 
-# In Postman:
+In Postman:
 * Open the request.
 * Go to the Headers tab.
 * Add: Content-Type: application/json
 
-## Create API Request
-## API Test Scenarios
-## The API tests cover the following scenarios:
+Create API Request
+API Test Scenarios
+The API tests cover the following scenarios:
 * Verify HTTP status code.
 * Verify response structure.
 * Verify success field.
 * Verify product results.
 * Make sure the following are installed:
 
-## For Web UI Automation Test
+For Web UI Automation Test
 * Python 3.12.6
 * Google Chrome (Version 153.0.8010.53)
 * Selenium (Version: 4.49.0)
-
 
 ---
 
